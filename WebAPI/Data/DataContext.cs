@@ -1,4 +1,6 @@
-﻿namespace WebAPI.Data
+﻿using WebAPI.Models;
+
+namespace WebAPI.Data
 {
     public class DataContext : DbContext
     {
@@ -8,5 +10,6 @@
         }
 
         public DbSet<SuperHero> SuperHeroes { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
