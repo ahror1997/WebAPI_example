@@ -28,7 +28,6 @@ namespace WebAPI.Controllers
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
             var user = new User
-            
             {
                 Username = request.Username,
                 PasswordHash = passwordHash,

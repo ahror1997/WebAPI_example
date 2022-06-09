@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
@@ -10,9 +11,10 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220609130518_initial_create_db")]
+    partial class initial_create_db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,9 +25,6 @@ namespace WebAPI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -43,8 +42,6 @@ namespace WebAPI.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Articles");
                 });
@@ -109,22 +106,6 @@ namespace WebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SuperHeroes");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Article", b =>
-                {
-                    b.HasOne("WebAPI.Models.Category", "Category")
-                        .WithMany("Articles")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Category", b =>
-                {
-                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }
